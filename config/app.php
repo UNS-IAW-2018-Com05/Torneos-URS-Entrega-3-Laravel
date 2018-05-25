@@ -159,7 +159,9 @@ return [
         // App\Providers\BroadcastServiceProvider::class,
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
+
         Jenssegers\Mongodb\MongodbServiceProvider::class,
+        TwigBridge\ServiceProvider::class,
 
     ],
 
@@ -209,6 +211,8 @@ return [
         'URL' => Illuminate\Support\Facades\URL::class,
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
+
+        'Twig' => TwigBridge\Facade\Twig::class,
 
     ],
 
