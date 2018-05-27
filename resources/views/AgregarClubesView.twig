@@ -1,0 +1,75 @@
+{% extends 'layout.twig' %}
+
+{% block content %}
+<div id="TablaPosiciones" style="margin-top: 70px">
+    <h3 id="etiquetaPosiciones" style="text-align: center"><b>Clubes  </b><button type="button" class="btn btn-primary" data-toggle="modal" data-target=".modal-lg-form">Agregar +</button></h3>
+    <div class="modal fade modal-lg-form" tabindex="-1" role="dialog" style="background-color:white;" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+      <form>
+        <div class="form-group">
+          <label for="exampleInputEmail1">Nombre del club</label>
+          <input type="nombre" class="form-control" id="nombre" aria-describedby="emailHelp" placeholder="Ingrese nombre">
+        </div>
+
+        <div class="form-group">
+          <label for="exampleTextarea">Descripcion</label>
+          <textarea class="form-control" id="exampleTextarea" rows="3"></textarea>
+        </div>
+        <div class="form-group">
+          <label for="adjuntarImagenInput">Adjuntar imagen</label>
+          <input type="file" class="form-control-file" id="exampleInputFile" aria-describedby="fileHelp">
+          <small id="fileHelp" class="form-text text-muted">This is some placeholder block-level help text for the above input. It's a bit lighter and easily wraps to a new line.</small>
+        </div>
+        <div class="form-group">
+          <label for="sitioWebInput">Sitio Web</label>
+          <input type="email" class="form-control" id="sitioWeb" aria-describedby="emailHelp" placeholder="Ingrese pagina web">
+          <small id="sitioWeb" class="form-text text-muted">Ejemplo: http://www.ejemplo.com</small>
+        </div>
+        <button type="aceptar" onclick="agregarClub()" class="btn btn-primary">Aceptar</button>
+        <button type="cancelar" href="/editarClubes" class="btn btn-primary">Cancelar</button>
+      </form>
+    </div>
+    <table class='table' bgcolor="white" id='tablaIndex'>
+      <thead class='thead-dark'>
+        <tr>
+          <th scope='col'>Club</th>
+          <th scope='col'>Escudo</th>
+          <th scope='col'>Descripcion</th>
+          <th scope='col'>Pagina Web</th>
+          <th scope='col'>Plantel</th>
+        </tr>
+      </thead>
+      <tbody>
+
+        {% for club in clubes %}
+          <tr>
+            <td>{{club.nombre}}</td>
+            <td><img HEIGHT="30" WIDTH="30" src="images/{{club.escudo}}"></td>
+            <td>{{club.descripcion}}</td>
+            <td><a class="btn btn-primary" href="{{club.link}}" target="_blank">
+              Ver
+            </a></td>
+            <td>
+              <button type="button" class="btn btn-primary" data-toggle="modal" data-target=".modal-lg-{{club._id}}">Ver</button>
+              {% if user %}
+              <button type="button" class="btn btn-warning" id="{{club._id}}" onclick="guardarFavorito(this.id)"><i class="fas fa-star"></i> Favorito</button>
+              {% endif %}
+              <div class="modal fade modal-lg-{{club._id}}" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-lg">
+                  <div class="modal-content">
+                    <ul class="list-group">
+                      {% for jugador in club.jugadores %}
+                      <li class="list-group-item">{{jugador.nombre}} {{jugador.apellido}}
+                        <small><strong> {{jugador.posicion}} </strong></small>
+                      </li>
+                      {% endfor %}
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+</div>
+{% endblock %}
