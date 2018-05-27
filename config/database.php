@@ -13,7 +13,7 @@ return [
     |
     */
 
-    'default' => env('DB_CONNECTION', 'mysql'),
+    'default' => env('DB_CONNECTION', 'mongodb'),
 
     /*
     |--------------------------------------------------------------------------
@@ -79,16 +79,16 @@ return [
         ],
 
         'mongodb' => [
-           'driver'   => 'mongodb',
-           'host'     => env('MONGODB_HOST'),
-           'port'     => env('MONGODB_PORT'),
-           'username' => env('MONGODB_USERNAME'),
-           'password' => env('MONGODB_PASSWORD'),
-           'database' => env('MONGODB_DATABASE'),
-           'options' => [
-               'database' =>  env('MONGODB_DATABASE') // sets the authentication database required by mongo 3
-           ]
-       ],
+    'driver'   => 'mongodb',
+    'host'     => env('DB_HOST', 'ds141406.mlab.com'),
+    'port'     => env('DB_PORT', 41406),
+    'database' => env('DB_DATABASE','torneours'),
+    'username' => env('DB_USERNAME','admin'),
+    'password' => env('DB_PASSWORD','admin'),
+    'options'  => [
+        'database' => 'torneours'
+    ]
+],
 
     ],
 
