@@ -8,4 +8,8 @@ class Fechas extends Eloquent {
 
     protected $collection = 'fechas';
 
+    public function partidos() {
+      return $this->hasMany(Partidos::class);
+    }
+
 }
