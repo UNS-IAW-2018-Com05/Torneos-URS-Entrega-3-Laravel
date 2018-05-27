@@ -11,6 +11,5 @@
 |
 */
 
-Route::get('/', function () {
-    return view('layout');
-});
+Route::get('/', 'IndexController@index');
+Route::get('/editarTorneo', 'EditarTorneoController@index');

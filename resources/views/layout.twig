@@ -20,11 +20,8 @@
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.12/css/all.css" integrity="sha384-G0fIWCsCzJIMAVNQPfjH08cyYaUtMwjJwqiRKxxE/rx96Uroj1BtIQ6MLJuheaO9" crossorigin="anonymous">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lobster">
 
-  {% if user.estilo %}
   <link rel="stylesheet" type="text/css" href="stylesheets/MiEstilo2.css" id="estilo2">
-  {% else %}
-  <link rel="stylesheet" type="text/css" href="stylesheets/MiEstilo2.css" id="estilo2" disabled>
-  {% endif %}
+
   <style>
     .mySlides {display:none}
     .w3-left, .w3-right, .w3-badge {cursor:pointer}
@@ -32,16 +29,13 @@
   </style>
 
 </head>
-{% if user.estilo %}
 <body>
-{% else %}
 <body background="images/backgroundNigth.jpg" style="background-size: cover;background-repeat: no-repeat;background-attachment: fixed;">
-{% endif %}
 
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top" id="navbar">
     <a class="navbar-brand" href="/">
       <img src="images/rugby-ball.png" width="30" height="30" alt="">
-      Torneos URS
+      Admin Torneos URS
     </a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
@@ -53,30 +47,16 @@
           <a class="nav-link" href="/" id="botonInicio">Inicio <span class="sr-only">(current)</span></a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="/Noticias" id="botonNoticias">Noticias</a>
-        </li>
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            Torneo
-          </a>
-          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <a class="dropdown-item" href="/Posiciones" id="dropPosiciones">Posiciones</a>
-            <a class="dropdown-item" href="/fixture" id="dropFechas">Fixture</a>
-          </div>
+          <a class="nav-link" href="/editarTorneo" id="botonNoticias">Editar Torneo</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="/clubes" id="botonClubes">Clubes</a>
+          <a class="nav-link" href="/nuevoTorneo" id="botonNoticias">Nuevo Torneo</a>
         </li>
-        {% if user.editor %}
         <li class="nav-item">
-          <a class="nav-link" href="/editor" id="botonEditar">Editar</a>
+          <a class="nav-link" href="/editarClubes" id="botonNoticias">Editar Clubes</a>
         </li>
-        {% endif %}
       </ul>
       <ul class="navbar-nav">
-        <li class="nav-item">
-          <button type="button" class="btn btn-primary" onclick="CambiarEstilo()" id="btnCambiarEstilo">Cambiar Estilo</button>
-        </li>
         &nbsp;
         {% if user %}
         <div class="dropdown">
@@ -117,9 +97,6 @@
     {% block content %}
 
     {% endblock %}
-    <a id="image" target="_blank" href="https://www.facebook.com/UniondeRugbydelSur/">
-      <img src="images/Union-de-Rugby-del-Sur.png" alt="Logo URS" />
-    </a>
   <script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.14.1/moment.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js" integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ" crossorigin="anonymous"></script>
