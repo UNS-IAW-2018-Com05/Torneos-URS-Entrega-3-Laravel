@@ -42,19 +42,27 @@
             <td> {{partido.local}}</td>
             <td>{{partido.visitante}}</td>
             <td>
-              <select class="custom-select" id="inputGroupSelect01">
-                <option selected>Seleccione...</option>
-                {% set value = 1 %}
-                {% for editor in editores %}
-                  <option value="{{value}}">{{editor.username}}</option>
-                  {% set value = value+1 %}
-                {% endfor %}
-              </select>
-          </td>
-            <td>
-              <button class="different" id="{{partido._id}}" onclick="guardarPartido(this)"><i class="far fa-save"></i></button>
+              <form method="POST" action="/editarTorneo/guardar">
+                {{ csrf_field() }}
+                <input type="hidden" readonly class="form-control-plaintext" value="{{partido._id}}" name="partido">
+                <div class="form-row align-items-center">
+                  <div class="col-auto my-1">
+                    <select class="custom-select mr-sm-2" id="inlineFormCustomSelect" name="editor">
+                      <option selected>Seleccione...</option>
+                      {% for editor in editores %}
+                        <option value="{{editor.googleId}}">{{editor.username}}</option>
+                      {% endfor %}
+                    </select>
+                  </div>
+                </div>
             </td>
-          </tr>
+            <td>
+              <div class="col-auto my-1">
+                <button type="submit" class="different" id="{{partido._id}}"><i class="far fa-save"></i></button>
+              </div>
+            </td>
+              </form>
+            </tr>
           {% endif %}
         {% set index = index+1 %}
         {% endfor %}
