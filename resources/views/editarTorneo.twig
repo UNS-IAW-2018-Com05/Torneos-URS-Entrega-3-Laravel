@@ -43,10 +43,12 @@
             <td>{{partido.visitante}}</td>
             <td>
               <select class="custom-select" id="inputGroupSelect01">
-                <option selected>Choose...</option>
-                <option value="1">One</option>
-                <option value="2">Two</option>
-                <option value="3">Three</option>
+                <option selected>Seleccione...</option>
+                {% set value = 1 %}
+                {% for editor in editores %}
+                  <option value="{{value}}">{{editor.username}}</option>
+                  {% set value = value+1 %}
+                {% endfor %}
               </select>
           </td>
             <td>
