@@ -9,9 +9,10 @@ use App\Partidos;
 class EditarTorneoController extends Controller
 {
     public function index(){
-      $partidos = Fechas::first();
+      $primeraFecha = Fechas::first();
+      $partidos = Partidos::findMany($primeraFecha->partidos);
       return view('editarTorneo', [ 'title' => 'Admin Torneos URS',
                                     'fechas' => Fechas::all(),
-                                  'partidos' => $partidos->_id]);
+                                    'partidos' => $partidos]);
     }
 }
