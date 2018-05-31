@@ -31,25 +31,11 @@
         <th scope="col">Guardar</th>
       </tr>
     </thead>
-    <tbody>
-      {% set index = 1 %}
-      {% for partido in partidos %}
-        <tr>
-          <td>{{partido._id}}</td>
-          <td> {{partido.local.nombre}}</td>
-          <td>{{partido.visitante.nombre}}</td>
-          <td><input type="number" class="form-control"></td>
-          <td><input type="number" class="form-control"></td>
-          <td>
-            <button class="different" id="{{partido._id}}" onclick="guardarPartido(this)"><i class="far fa-save"></i></button>
-          </td>
-        </tr>
-      {% set index = index+1 %}
-      {% endfor %}
-    </tbody>
   </table>
   <p>{{fechas}}</p>
-  <p>{{partidos}}</p>
+  {% for partido in partidos %}
+    <p>{{partido}}</p>
+  {% endfor %}
 </div>
 <script src="/javascripts/guardarPartido.js"></script>
 {% endblock %}
