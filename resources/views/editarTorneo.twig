@@ -3,39 +3,62 @@
 {% block content %}
 <style>
 .different {
-    background-color: rgb(94, 94, 94); /* Blue background */
-    border: none; /* Remove borders */
-    color: white; /* White text */
-    padding: 12px 16px; /* Some padding */
-    font-size: 16px; /* Set a font size */
-    cursor: pointer; /* Mouse pointer on hover */
+  background-color: rgb(94, 94, 94); /* Blue background */
+  border: none; /* Remove borders */
+  color: white; /* White text */
+  padding: 12px 16px; /* Some padding */
+  font-size: 16px; /* Set a font size */
+  cursor: pointer; /* Mouse pointer on hover */
 }
 
 /* Darker background on mouse-over */
 .different:hover {
-    background-color: RoyalBlue;
+  background-color: RoyalBlue;
 }
 </style>
 <div id="TablaPosiciones" style="margin-top: 70px">
-    <h3 id="etiquetaPosiciones" style="text-align: center"><b>Partidos para agregar Resultado</b></h3>
+  <h3 id="etiquetaPosiciones" style="text-align: center"><b>Partidos para elegir editor</b></h3>
 </div>
 <div>
   <table class="table table-bordered">
     <thead>
       <tr>
-        <th scope="col">ID Partido</th>
+        <th scope="col">Fecha</th>
+        <th scope="col">Partido</th>
         <th scope="col">Local</th>
         <th scope="col">Visitante</th>
-        <th scope="col">Puntos Local</th>
-        <th scope="col">Puntos Visitante</th>
+        <th scope="col">Editor</th>
         <th scope="col">Guardar</th>
       </tr>
     </thead>
+    <tbody>
+      {% set index = 1 %}
+      {% for fecha in fechas %}
+        {% for partido in fecha.partidos %}
+          {% if partido.estado == "no iniciado" %}
+          <tr>
+            <td>{{fecha.numero}}</td>
+            <td>{{index}}</td>
+            <td> {{partido.local}}</td>
+            <td>{{partido.visitante}}</td>
+            <td>
+              <select class="custom-select" id="inputGroupSelect01">
+                <option selected>Choose...</option>
+                <option value="1">One</option>
+                <option value="2">Two</option>
+                <option value="3">Three</option>
+              </select>
+          </td>
+            <td>
+              <button class="different" id="{{partido._id}}" onclick="guardarPartido(this)"><i class="far fa-save"></i></button>
+            </td>
+          </tr>
+          {% endif %}
+        {% set index = index+1 %}
+        {% endfor %}
+      {% endfor %}
+    </tbody>
   </table>
-  <p>{{fechas}}</p>
-  {% for partido in partidos %}
-    <p>{{partido}}</p>
-  {% endfor %}
 </div>
 <script src="/javascripts/guardarPartido.js"></script>
 {% endblock %}

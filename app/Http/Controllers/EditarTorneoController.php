@@ -5,14 +5,14 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Fechas;
 use App\Partidos;
+use App\Helpers\JoinTablas;
 
 class EditarTorneoController extends Controller
 {
     public function index(){
-      $primeraFecha = Fechas::first();
-      $partidos = Partidos::findMany($primeraFecha->partidos);
+      $helper = new JoinTablas();
+      $fechas = $helper->juntarTablas(Fechas::all());
       return view('editarTorneo', [ 'title' => 'Admin Torneos URS',
-                                    'fechas' => Fechas::all(),
-                                    'partidos' => $partidos]);
+                                    'fechas' => $fechas]);
     }
 }
