@@ -23,7 +23,6 @@ class EditarTorneoController extends Controller
       $partidoAgregarEditor = Partidos::where('_id', new \MongoDB\BSON\ObjectId(request('partido')))->first();
       $partidoAgregarEditor->editor = request('editor');
       $partidoAgregarEditor->save();
-
       return redirect('/editarTorneo');
     }
 
