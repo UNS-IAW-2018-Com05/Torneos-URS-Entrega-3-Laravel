@@ -14,3 +14,5 @@
 Route::get('/', 'IndexController@index');
 Route::get('/editarTorneo', 'EditarTorneoController@index');
 Route::get('/editarClubes', 'AgregarClubesController@show');
+
+Route::post('/editarTorneo/guardar','EditarTorneoController@guardarEditor');
