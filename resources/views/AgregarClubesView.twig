@@ -4,28 +4,119 @@
 <div id="TablaPosiciones" style="margin-top: 70px">
     <h3 id="etiquetaPosiciones" style="text-align: center"><b>Clubes  </b><button type="button" class="btn btn-primary" data-toggle="modal" data-target=".modal-lg-form">Agregar +</button></h3>
     <div class="modal fade modal-lg-form" tabindex="-1" role="dialog" style="background-color:white;" aria-labelledby="myLargeModalLabel" aria-hidden="true">
-      <form>
+      <form method="POST" action="/editarClubes/guardar" enctype="multipart/form-data">
+        {{ csrf_field() }}
         <div class="form-group">
           <label for="exampleInputEmail1">Nombre del club</label>
-          <input type="nombre" class="form-control" id="nombre" aria-describedby="emailHelp" placeholder="Ingrese nombre">
+          <input type="text" class="form-control" id="nombre" aria-describedby="emailHelp" placeholder="Ingrese nombre" name="nombre">
         </div>
 
         <div class="form-group">
           <label for="descripcionInput">Descripcion</label>
-          <textarea class="form-control" id="exampleTextarea" rows="3"></textarea>
+          <textarea class="form-control" id="exampleTextarea" rows="3" name="descripcion"></textarea>
         </div>
         <div class="form-group">
-          <label for="adjuntarImagenInput">Adjuntar imagen</label>
-          <input type="file" class="form-control-file" id="exampleInputFile" aria-describedby="fileHelp">
-          <small id="fileHelp" class="form-text text-muted">This is some placeholder block-level help text for the above input. It's a bit lighter and easily wraps to a new line.</small>
+          <div class="custom-file">
+            <input type="file" class="custom-file-input" id="customFile" name="escudo">
+            <label class="custom-file-label" for="customFile">Choose file</label>
+          </div>
         </div>
         <div class="form-group">
           <label for="sitioWebInput">Sitio Web</label>
-          <input type="email" class="form-control" id="sitioWeb" aria-describedby="emailHelp" placeholder="Ingrese pagina web">
+          <input type="url" class="form-control" id="sitioWeb" aria-describedby="emailHelp" placeholder="Ingrese pagina web" name="link">
           <small id="sitioWeb" class="form-text text-muted">Ejemplo: http://www.ejemplo.com</small>
         </div>
-        <button type="aceptar" onclick="agregarClub()" class="btn btn-primary">Aceptar</button>
-        <button type="cancelar" href="/editarClubes" class="btn btn-primary">Cancelar</button>
+        <div class="form-group">
+          <label>Plantel</label>
+          <table class="table">
+            <thead class="thead-light">
+              <tr>
+                <th scope="col">Posicion</th>
+                <th scope="col">Nombre</th>
+                <th scope="col">Apellido</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><input type="text" readonly class="form-control-plaintext" value="Primera Linea" name="posicion[]"></td>
+                <td><input type="text" class="form-control" name="nombres[]"></td>
+                <td><input type="text" class="form-control" name="apellido[]"></td>
+              </tr>
+              <tr>
+                <td><input type="text" readonly class="form-control-plaintext" value="Primera Linea" name="posicion[]"></td>
+                <td><input type="text" class="form-control" name="nombres[]"></td>
+                <td><input type="text" class="form-control" name="apellido[]"></td>
+              </tr>
+              <tr>
+                <td><input type="text" readonly class="form-control-plaintext" value="Primera Linea" name="posicion[]"></td>
+                <td><input type="text" class="form-control" name="nombres[]"></td>
+                <td><input type="text" class="form-control" name="apellido[]"></td>
+              </tr>
+              <tr>
+                <td><input type="text" readonly class="form-control-plaintext" value="Segunda Linea" name="posicion[]"></td>
+                <td><input type="text" class="form-control" name="nombres[]"></td>
+                <td><input type="text" class="form-control" name="apellido[]"></td>
+              </tr>
+              <tr>
+                <td><input type="text" readonly class="form-control-plaintext" value="Segunda Linea" name="posicion[]"></td>
+                <td><input type="text" class="form-control" name="nombres[]"></td>
+                <td><input type="text" class="form-control" name="apellido[]"></td>
+              </tr>
+              <tr>
+                <td><input type="text" readonly class="form-control-plaintext" value="Tercera Linea" name="posicion[]"></td>
+                <td><input type="text" class="form-control" name="nombres[]"></td>
+                <td><input type="text" class="form-control" name="apellido[]"></td>
+              </tr>
+              <tr>
+                <td><input type="text" readonly class="form-control-plaintext" value="Tercera Linea" name="posicion[]"></td>
+                <td><input type="text" class="form-control" name="nombres[]"></td>
+                <td><input type="text" class="form-control" name="apellido[]"></td>
+              </tr>
+              <tr>
+                <td><input type="text" readonly class="form-control-plaintext" value="Tercera Linea" name="posicion[]"></td>
+                <td><input type="text" class="form-control" name="nombres[]"></td>
+                <td><input type="text" class="form-control" name="apellido[]"></td>
+              </tr>
+              <tr>
+                <td><input type="text" readonly class="form-control-plaintext" value="Medio Scrum" name="posicion[]"></td>
+                <td><input type="text" class="form-control" name="nombres[]"></td>
+                <td><input type="text" class="form-control" name="apellido[]"></td>
+              </tr>
+              <tr>
+                <td><input type="text" readonly class="form-control-plaintext" value="Apertura" name="posicion[]"></td>
+                <td><input type="text" class="form-control" name="nombres[]"></td>
+                <td><input type="text" class="form-control" name="apellido[]"></td>
+              </tr>
+              <tr>
+                <td><input type="text" readonly class="form-control-plaintext" value="Wing Izquierdo" name="posicion[]"></td>
+                <td><input type="text" class="form-control" name="nombres[]"></td>
+                <td><input type="text" class="form-control" name="apellido[]"></td>
+              </tr>
+              <tr>
+                <td><input type="text" readonly class="form-control-plaintext" value="Centro Interior" name="posicion[]"></td>
+                <td><input type="text" class="form-control" name="nombres[]"></td>
+                <td><input type="text" class="form-control" name="apellido[]"></td>
+              </tr>
+              <tr>
+                <td><input type="text" readonly class="form-control-plaintext" value="Centro Exterior" name="posicion[]"></td>
+                <td><input type="text" class="form-control" name="nombres[]"></td>
+                <td><input type="text" class="form-control" name="apellido[]"></td>
+              </tr>
+              <tr>
+                <td><input type="text" readonly class="form-control-plaintext" value="Wing Derecho" name="posicion[]"></td>
+                <td><input type="text" class="form-control" name="nombres[]"></td>
+                <td><input type="text" class="form-control" name="apellido[]"></td>
+              </tr>
+              <tr>
+                <td><input type="text" readonly class="form-control-plaintext" value="Full Back" name="posicion[]"></td>
+                <td><input type="text" class="form-control" name="nombres[]"></td>
+                <td><input type="text" class="form-control" name="apellido[]"></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <button type="submit" class="btn btn-primary">Aceptar</button>
+        <button href="/editarClubes" class="btn btn-primary">Cancelar</button>
       </form>
     </div>
     <table class='table' bgcolor="white" id='tablaIndex'>

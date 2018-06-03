@@ -1,0 +1,31 @@
+{% extends 'layout.twig' %}
+
+{% block content %}
+<div id="TablaPosiciones" style="margin-top: 70px">
+  <h3 id="etiquetaPosiciones" style="text-align: center"><b>Nuevo Torneo</b></h3>
+</div>
+<form method="POST" action="/nuevoTorneo/guardar">
+  {{ csrf_field() }}
+  <div class="form-group">
+    <label for="nombreTorneo">Nombre del nuevo torneo</label>
+    <input type="text" class="form-control" id="nombreTorneo" placeholder="Ingrese nombre" name="nombre-torneo">
+  </div>
+  <div class="form-group">
+    <label for="exampleFormControlSelect2">Seleccione clubes participantes (Sostenga ctrl o shift (o arrastre con el mouse seleccionado) para seleccionar mas de uno)</label>
+    <select multiple class="form-control" id="exampleFormControlSelect2" name="clubes[]">
+      {% for club in clubes %}
+      <option value="{{club._id}}">{{club.nombre}}</option>
+      {% endfor %}
+    </select>
+  </div>
+  <div class="form-check form-check-inline">
+    <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="1">
+    <label class="form-check-label" for="inlineRadio1">Ida</label>
+  </div>
+  <div class="form-check form-check-inline">
+    <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="2">
+    <label class="form-check-label" for="inlineRadio2">Ida y Vuelta</label>
+  </div>
+  <button type="submit" class="btn btn-primary">Crear</button>
+</form>
+{% endblock %}
