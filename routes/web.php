@@ -11,10 +11,17 @@
 |
 */
 
-Route::get('/', 'IndexController@index');
-Route::get('/editarTorneo', 'EditarTorneoController@index');
-Route::get('/editarClubes', 'AgregarClubesController@show');
-Route::get('/nuevoTorneo','NuevoTorneoController@index');
+
+Auth::routes();
+
+Route::get('/', 'HomeController@index');
+
+Route::get('/index', 'IndexController@index')->middleware('checkAdmin');
+Route::get('/editarTorneo', 'EditarTorneoController@index')->middleware('checkAdmin');
+Route::get('/editarClubes', 'AgregarClubesController@show')->middleware('checkAdmin');
+Route::get('/nuevoTorneo','NuevoTorneoController@index')->middleware('checkAdmin');
+
+Route::get('logout', '\App\Http\Controllers\Auth\LoginController@logout');
 
 Route::post('/editarTorneo/guardar','EditarTorneoController@guardarEditor');
 Route::post('/nuevoTorneo/guardar','NuevoTorneoController@guardar');

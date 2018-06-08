@@ -162,6 +162,7 @@ return [
 
         Jenssegers\Mongodb\MongodbServiceProvider::class,
         TwigBridge\ServiceProvider::class,
+        Jenssegers\Mongodb\Session\SessionServiceProvider::class,
 
     ],
 
