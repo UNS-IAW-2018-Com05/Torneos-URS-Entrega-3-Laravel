@@ -20,49 +20,50 @@
   <h3 id="etiquetaPosiciones" style="text-align: center"><b>Partidos para seleccionar dias de juego</b></h3>
 </div>
 <div>
-  <table class="table table-bordered">
-    <thead>
-      <tr>
-        <th scope="col">Fecha</th>
-        <th scope="col">Partido</th>
-        <th scope="col">Local</th>
-        <th scope="col">Visitante</th>
-        <th scope="col">Dia de partido</th>
-        <th scope="col">Hora de partido</th>
-        <th scope="col">Guardar</th>
-      </tr>
-    </thead>
-    <tbody>
-      {% set index = 1 %}
-      {% for fecha in fechas %}
-        {% for partido in fecha.partidos %}
-          {% if partido.estado == "no iniciado" %}
+  {% set index = 1 %}
+  {% for fecha in fechas %}
+  {% if fecha.partidos|length >=1 %}
+    <h4>Fecha {{fecha.numero}}</h4>
+      <table class="table table-bordered">
+        <thead>
           <tr>
-            <td>{{fecha.numero}}</td>
-            <td>{{index}}</td>
-            <td> {{partido.local}}</td>
-            <td>{{partido.visitante}}</td>
-            <td>
-              <form method="POST" action="/editarDias/guardar">
-                {{ csrf_field() }}
-                <input type="hidden" readonly class="form-control-plaintext" value="{{partido._id}}" name="partido">
-                <input id="date" type="date" name="dia">
-            </td>
-            <td>
-              <input type="text" name="hora" placeholder="14.00">
-            </td>
-            <td>
-              <div class="col-auto my-1">
-                <button type="submit" class="different" id="{{partido._id}}"><i class="far fa-save"></i></button>
-              </div>
-            </td>
-              </form>
-            </tr>
+            <th scope="col">Partido</th>
+            <th scope="col">Local</th>
+            <th scope="col">Visitante</th>
+            <th scope="col">Fin de semana</th>
+            <th scope="col">Dia de partido</th>
+            <th scope="col">Hora de partido</th>
+            <th scope="col">Guardar</th>
+          </tr>
+        </thead>
+        <tbody>
+            {% for partido in fecha.partidos %}
+              <tr>
+                <td>{{index}}</td>
+                <td> {{partido.local}}</td>
+                <td>{{partido.visitante}}</td>
+                <td>{{fecha.diasDeJuego[0]}} <b>-</b> {{fecha.diasDeJuego[1]}}</td>
+                <td>
+                  <form method="POST" action="/editarDias/guardar">
+                    {{ csrf_field() }}
+                    <input type="hidden" readonly class="form-control-plaintext" value="{{partido._id}}" name="partido">
+                    <input id="date" type="date" name="dia">
+                </td>
+                <td>
+                  <input type="text" name="hora" placeholder="14.00">
+                </td>
+                <td>
+                  <div class="col-auto my-1">
+                    <button type="submit" class="different" id="{{partido._id}}"><i class="far fa-save"></i></button>
+                  </div>
+                </td>
+                  </form>
+                </tr>
+            {% set index = index+1 %}
+            {% endfor %}
           {% endif %}
-        {% set index = index+1 %}
-        {% endfor %}
-      {% endfor %}
-    </tbody>
-  </table>
+      </tbody>
+    </table>
+  {% endfor %}
 </div>
 {% endblock %}

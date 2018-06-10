@@ -20,55 +20,54 @@
   <h3 id="etiquetaPosiciones" style="text-align: center"><b>Partidos para elegir editor</b></h3>
 </div>
 <div>
-  <table class="table table-bordered">
-    <thead>
-      <tr>
-        <th scope="col">Fecha</th>
-        <th scope="col">Partido</th>
-        <th scope="col">Local</th>
-        <th scope="col">Visitante</th>
-        <th scope="col">Editor</th>
-        <th scope="col">Guardar</th>
-      </tr>
-    </thead>
-    <tbody>
-      {% set index = 1 %}
-      {% for fecha in fechas %}
-        {% for partido in fecha.partidos %}
-          {% if partido.estado == "no iniciado" %}
-          <tr>
-            <td>{{fecha.numero}}</td>
-            <td>{{index}}</td>
-            <td> {{partido.local}}</td>
-            <td>{{partido.visitante}}</td>
-            <td>
-              <form method="POST" action="/editarTorneo/guardar">
-                {{ csrf_field() }}
-                <input type="hidden" readonly class="form-control-plaintext" value="{{partido._id}}" name="partido">
-                <div class="form-row align-items-center">
-                  <div class="col-auto my-1">
-                    <select class="custom-select mr-sm-2" id="inlineFormCustomSelect" name="editor">
-                      <option selected>Seleccione...</option>
-                      {% for editor in editores %}
-                        <option value="{{editor.googleId}}">{{editor.username}}</option>
-                      {% endfor %}
-                    </select>
+  {% set index = 1 %}
+  {% for fecha in fechas %}
+  {% if fecha.partidos|length >=1 %}
+    <h4>Fecha {{fecha.numero}}</h4>
+    <table class="table table-bordered">
+      <thead>
+        <tr>
+          <th scope="col">Partido</th>
+          <th scope="col">Local</th>
+          <th scope="col">Visitante</th>
+          <th scope="col">Editor</th>
+          <th scope="col">Guardar</th>
+        </tr>
+      </thead>
+      <tbody>
+          {% for partido in fecha.partidos %}
+            <tr>
+              <td>{{index}}</td>
+              <td> {{partido.local}}</td>
+              <td>{{partido.visitante}}</td>
+              <td>
+                <form method="POST" action="/editarTorneo/guardar">
+                  {{ csrf_field() }}
+                  <input type="hidden" readonly class="form-control-plaintext" value="{{partido._id}}" name="partido">
+                  <div class="form-row align-items-center">
+                    <div class="col-auto my-1">
+                      <select class="custom-select mr-sm-2" id="inlineFormCustomSelect" name="editor">
+                        <option selected value="">Seleccione...</option>
+                        {% for editor in editores %}
+                          <option value="{{editor.googleId}}">{{editor.username}}</option>
+                        {% endfor %}
+                      </select>
+                      <div class="invalid-feedback">Example invalid custom select feedback</div>
+                    </div>
                   </div>
+              </td>
+              <td>
+                <div class="col-auto my-1">
+                  <button type="submit" class="different" id="{{partido._id}}"><i class="far fa-save"></i></button>
                 </div>
-            </td>
-            <td>
-              <div class="col-auto my-1">
-                <button type="submit" class="different" id="{{partido._id}}"><i class="far fa-save"></i></button>
-              </div>
-            </td>
-              </form>
-            </tr>
-          {% endif %}
-        {% set index = index+1 %}
-        {% endfor %}
-      {% endfor %}
-    </tbody>
-  </table>
+              </td>
+                </form>
+              </tr>
+          {% set index = index+1 %}
+          {% endfor %}
+        {% endif %}
+      </tbody>
+    </table>
+    {% endfor %}
 </div>
-<script src="/javascripts/guardarPartido.js"></script>
 {% endblock %}
