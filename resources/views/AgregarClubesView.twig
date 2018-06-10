@@ -8,12 +8,12 @@
         {{ csrf_field() }}
         <div class="form-group">
           <label for="exampleInputEmail1">Nombre del club</label>
-          <input type="text" class="form-control" id="nombre" aria-describedby="emailHelp" placeholder="Ingrese nombre" name="nombre">
+          <input type="text" class="form-control" id="nombre" aria-describedby="emailHelp" placeholder="Ingrese nombre" name="nombre" required>
         </div>
 
         <div class="form-group">
           <label for="descripcionInput">Descripcion</label>
-          <textarea class="form-control" id="exampleTextarea" rows="3" name="descripcion"></textarea>
+          <textarea class="form-control" id="exampleTextarea" rows="3" name="descripcion" required></textarea>
         </div>
         <div class="form-group">
           <div class="custom-file">
@@ -23,7 +23,7 @@
         </div>
         <div class="form-group">
           <label for="sitioWebInput">Sitio Web</label>
-          <input type="url" class="form-control" id="sitioWeb" aria-describedby="emailHelp" placeholder="Ingrese pagina web" name="link">
+          <input type="url" class="form-control" id="sitioWeb" aria-describedby="emailHelp" placeholder="Ingrese pagina web" name="link" required>
           <small id="sitioWeb" class="form-text text-muted">Ejemplo: http://www.ejemplo.com</small>
         </div>
         <div class="form-group">
@@ -116,8 +116,8 @@
           </table>
         </div>
         <button type="submit" class="btn btn-primary">Aceptar</button>
-        <button href="/editarClubes" class="btn btn-primary">Cancelar</button>
       </form>
+      <button href="/editarClubes" class="btn btn-primary">Cancelar</button>
     </div>
     <table class='table' bgcolor="white" id='tablaIndex'>
       <thead class='thead-dark'>
