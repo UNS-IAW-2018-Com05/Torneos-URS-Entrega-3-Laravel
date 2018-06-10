@@ -3,7 +3,7 @@
 {% block content %}
 <div id="TablaPosiciones" style="margin-top: 70px">
     <h3 id="etiquetaPosiciones" style="text-align: center"><b>Clubes  </b><button type="button" class="btn btn-primary" data-toggle="modal" data-target=".modal-lg-form">Agregar +</button></h3>
-    <div class="modal fade modal-lg-form" tabindex="-1" role="dialog" style="background-color:white;" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+    <div class="modal modal-lg-form" tabindex="-1" role="dialog" style="background-color:white;" aria-labelledby="myLargeModalLabel" aria-hidden="true">
       <form method="POST" action="/editarClubes/guardar" enctype="multipart/form-data">
         {{ csrf_field() }}
         <div class="form-group">
@@ -116,8 +116,9 @@
           </table>
         </div>
         <button type="submit" class="btn btn-primary">Aceptar</button>
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
       </form>
-      <button href="/editarClubes" class="btn btn-primary">Cancelar</button>
+
     </div>
     <table class='table' bgcolor="white" id='tablaIndex'>
       <thead class='thead-dark'>
