@@ -7,6 +7,7 @@ use App\Fechas;
 use App\Partidos;
 use App\Usuarios;
 use App\Helpers\JoinTablas;
+use Auth;
 
 class EditarTorneoController extends Controller
 {
@@ -16,7 +17,7 @@ class EditarTorneoController extends Controller
       $editores = Usuarios::where('editor',true)->get();
       return view('editarTorneo', [ 'title' => 'Admin Torneos URS',
                                     'fechas' => $fechas,
-                                  'editores' => $editores]);
+                                  'editores' => $editores,'admin'=>Auth::user()->name]);
     }
 
     public function guardarEditor(){

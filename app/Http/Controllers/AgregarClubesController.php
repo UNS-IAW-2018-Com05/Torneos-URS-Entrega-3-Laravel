@@ -5,13 +5,14 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Clubes;
 use App\Helpers\Jugador;
+use Auth;
 
 class AgregarClubesController extends Controller
 {
 
   public function show(){
 
-    return view('AgregarClubesView', [ 'title' => 'Admin Torneos URS','clubes' => Clubes::all()]);
+    return view('AgregarClubesView', [ 'title' => 'Admin Torneos URS','clubes' => Clubes::all(),'admin'=>Auth::user()->name]);
   }
 
   public function guardar(){

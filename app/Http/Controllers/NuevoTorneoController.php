@@ -7,13 +7,14 @@ use App\Clubes;
 use App\Fechas;
 use App\Partidos;
 use App\Helpers\Arbitro;
+use Auth;
 
 class NuevoTorneoController extends Controller
 {
 
     public function index(){
 
-      return view('nuevoTorneo', [ 'title' => 'Admin Torneos URS','clubes' => Clubes::all()]);
+      return view('nuevoTorneo', [ 'title' => 'Admin Torneos URS','clubes' => Clubes::all(),'admin'=>Auth::user()->name]);
     }
 
     public function guardar(){
@@ -35,7 +36,7 @@ class NuevoTorneoController extends Controller
           $equipoVisitante = $roundrobin[$j+$cantClubes/2];
 
           $partidoNuevo = new Partidos;
-          $partidoNuevo->dia=new \MongoDB\BSON\UTCDateTime();;
+          $partidoNuevo->dia=new \MongoDB\BSON\UTCDateTime();
           $partidoNuevo->hora='16.00';
           $partidoNuevo->local=new \MongoDB\BSON\ObjectId($equipoLocal);
           $partidoNuevo->visitante=new \MongoDB\BSON\ObjectId($equipoVisitante);
