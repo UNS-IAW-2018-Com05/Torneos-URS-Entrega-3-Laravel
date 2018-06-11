@@ -26,5 +26,5 @@ Route::get('logout', '\App\Http\Controllers\Auth\LoginController@logout');
 
 Route::post('/editarTorneo/guardar','EditarTorneoController@guardarEditor')->middleware('checkAdmin');
 Route::post('/nuevoTorneo/guardar','NuevoTorneoController@guardar')->middleware('checkAdmin');
-Route::post('/editarClubes/guardar', 'AgregarClubesController@guardar')->middleware('checkAdmin');
+Route::post('/editarClubes/guardar', 'AgregarClubesController@guardar');
 Route::post('/editarDias/guardar','EditarDiasController@guardar')->middleware('checkAdmin')->middleware('checkAdmin');
