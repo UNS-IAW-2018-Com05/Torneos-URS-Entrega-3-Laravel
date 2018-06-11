@@ -22,10 +22,12 @@ class AgregarClubesController extends Controller
     $clubNuevo->link = request('link');
 
     $image = request()->file('escudo');
-    $name = time().'.'.$image->getClientOriginalExtension();
-    $destinationPath = public_path('/images');
-    $image->move($destinationPath, $name);
-    $clubNuevo->escudo = $name;
+    if ($image != null){
+      $name = time().'.'.$image->getClientOriginalExtension();
+      $destinationPath = public_path('/images');
+      $image->move($destinationPath, $name);
+      $clubNuevo->escudo = $name;
+    }
 
     $nombresJugadores = request('nombres');
     $apellidoJugadores = request('apellido');
@@ -45,5 +47,7 @@ class AgregarClubesController extends Controller
 
     $clubNuevo->jugadores = $jugadores;
     $clubNuevo->save();
+
+    return redirect('/editarClubes');
   }
 }
