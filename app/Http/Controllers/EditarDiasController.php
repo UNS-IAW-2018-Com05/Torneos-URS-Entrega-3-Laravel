@@ -21,6 +21,7 @@ class EditarDiasController extends Controller
     $partidoAgregarDiaDeJuego = Partidos::where('_id', new \MongoDB\BSON\ObjectId(request('partido')))->first();
     $time = strtotime(request('dia')) * 1000;
     $partidoAgregarDiaDeJuego->dia = new \MongoDB\BSON\UTCDateTime($time);
+    $partidoAgregarDiaDeJuego->hora = request('hora');
     $partidoAgregarDiaDeJuego->save();
     return redirect('/editarDias');
   }

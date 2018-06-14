@@ -47,10 +47,10 @@
                   <form method="POST" action="/editarDias/guardar">
                     {{ csrf_field() }}
                     <input type="hidden" readonly class="form-control-plaintext" value="{{partido._id}}" name="partido">
-                    <input id="date" type="date" name="dia">
+                    <input id="date" type="date" name="dia" value="{{partido.dia}}">
                 </td>
                 <td>
-                  <input type="text" name="hora" placeholder="14.00">
+                  <input type="text" name="hora" placeholder="14.00" vaule="{{partido.hora}}">
                 </td>
                 <td>
                   <div class="col-auto my-1">
