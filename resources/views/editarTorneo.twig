@@ -46,10 +46,16 @@
                   <input type="hidden" readonly class="form-control-plaintext" value="{{partido._id}}" name="partido">
                   <div class="form-row align-items-center">
                     <div class="col-auto my-1">
+                      {% set encontre = false %}
                       <select class="custom-select mr-sm-2" id="inlineFormCustomSelect" name="editor">
                         <option selected value="">Seleccione...</option>
                         {% for editor in editores %}
+                        {% if partido.editor == editor.googleId and encontre == false %}
+                          <option selected value="{{editor.googleId}}">{{editor.username}}</option>
+                          {% set encontre = true %}
+                        {% else %}
                           <option value="{{editor.googleId}}">{{editor.username}}</option>
+                        {% endif %}
                         {% endfor %}
                       </select>
                       <div class="invalid-feedback">Example invalid custom select feedback</div>
